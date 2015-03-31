@@ -76,10 +76,11 @@ void DrawMassSpectrum(float M_chi10=-9999,
 		      float MIN=-9999,
 		      float MAX=-9999,
 		      TString tag="",
-		      TString format="eps")
+		      TString format="eps",
+		      TString outdir="./")
 {
   cout << "GENERATING MASS SPECTRUM..." << endl;
-	
+  
   SetStyle();
 		
   int color1 = kRed;	
@@ -285,7 +286,7 @@ void DrawMassSpectrum(float M_chi10=-9999,
   if( M_G       > 0 )     	T_G       ->Draw();
 	
 
-  cmass->SaveAs("plots/mass_spectrum"+tag+"."+format);
+  cmass->SaveAs(outdir+"/mass_spectrum"+tag+"."+format);
 }
 
   

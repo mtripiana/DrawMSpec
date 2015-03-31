@@ -3,6 +3,7 @@
 # Author : Martin Tripiana <tripiana@cern.ch>
 
 import sys, os, string, math
+import subprocess
 import argparse
 
 def error(self, message):
@@ -24,6 +25,7 @@ parser.add_argument('-t', action='store', dest='tag', default='', help='tag for 
 parser.add_argument('-m', action='store', dest='min', default='-1', help='minimum mass value [GeV]')
 parser.add_argument('-x', action='store', dest='max', default='-1', help='maximum mass value [GeV]')
 parser.add_argument('-f', action='store', dest='format', default='eps', help='output graphic format : eps (default),png, pdf, ...)')
+parser.add_argument('-o', action='store', dest='outdir', default='.', help='output directory')
 
 config = parser.parse_args()
 if config.ifile is None:
@@ -277,7 +279,8 @@ if MIN < 0:
 
 
 #Call Drawing code for read spectrum
-MACRO_CALL="\'"+"DrawMassSpectrum.C("+str(M_chi10)+","+str(M_chi20)+","+str(M_chi30)+","+str(M_chi40)+","+str(M_chi1p)+","+str(M_chi2p)+","+str(M_uL)+","+str(M_uR)+","+str(M_dL)+","+str(M_dR)+","+str(M_sL)+","+str(M_sR)+","+str(M_cL)+","+str(M_cR)+","+str(M_t1)+","+str(M_t2)+","+str(M_b1)+","+str(M_b2)+","+str(M_eL)+","+str(M_eR)+","+str(M_nu_eL)+","+str(M_muL)+","+str(M_muR)+","+str(M_nu_muL)+","+str(M_tau1)+","+str(M_tau2)+","+str(M_nu_tauL)+","+str(M_h0)+","+str(M_H)+","+str(M_Hp)+","+str(M_A)+","+str(M_gl)+","+str(M_G)+","+str(MIN)+","+str(MAX)+",\""+TAG+"\",\""+config.format+"\")"+"\'"
+MACRO_CALL="\'"+"DrawMassSpectrum.C("+str(M_chi10)+","+str(M_chi20)+","+str(M_chi30)+","+str(M_chi40)+","+str(M_chi1p)+","+str(M_chi2p)+","+str(M_uL)+","+str(M_uR)+","+str(M_dL)+","+str(M_dR)+","+str(M_sL)+","+str(M_sR)+","+str(M_cL)+","+str(M_cR)+","+str(M_t1)+","+str(M_t2)+","+str(M_b1)+","+str(M_b2)+","+str(M_eL)+","+str(M_eR)+","+str(M_nu_eL)+","+str(M_muL)+","+str(M_muR)+","+str(M_nu_muL)+","+str(M_tau1)+","+str(M_tau2)+","+str(M_nu_tauL)+","+str(M_h0)+","+str(M_H)+","+str(M_Hp)+","+str(M_A)+","+str(M_gl)+","+str(M_G)+","+str(MIN)+","+str(MAX)+",\""+TAG+"\",\""+config.format+"\",\""+config.outdir+"\")\'"
 
-os.system("root -l -b -q "+MACRO_CALL)
+
+output = subprocess.check_output("root -l -b -q "+MACRO_CALL, shell=True)
 
