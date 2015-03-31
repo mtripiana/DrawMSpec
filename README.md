@@ -1,5 +1,4 @@
 # DrawMSpec
-# Author : Martin Tripiana <tripiana@cern.ch>
 
  This code allows to draw a nice SUSY mass spectrum from any slha file. 
 
