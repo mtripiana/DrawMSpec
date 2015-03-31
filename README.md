@@ -1,12 +1,12 @@
 # DrawMSpec
 
- This code allows to draw a nice SUSY mass spectrum from any slha file. 
+ Want to draw a nice SUSY mass spectrum from any slha file?
 
-To run it just type : 
+Just type : 
 
       python drawMSpec.py 
       
-  and check the options 
+  and check the options :) 
       
   Enjoy it!
   Martin 
